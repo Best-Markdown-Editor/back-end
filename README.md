@@ -1,5 +1,9 @@
-# Knex GraphQL and TypeScript
+# Best Markdown Editor Back End
 
-[![maintainability](https://api.codeclimate.com/v1/badges/93908cf627716c62afe6/maintainability)](https://codeclimate.com/github/JimmyMcBride/knexts/maintainability)
+[![maintainability](https://api.codeclimate.com/v1/badges/75c6ac9f8eef8e31b37f/maintainability)](https://codeclimate.com/github/Best-Markdown-Editor/back-end/maintainability) [![test coverage](https://api.codeclimate.com/v1/badges/75c6ac9f8eef8e31b37f/test_coverage)](https://codeclimate.com/github/Best-Markdown-Editor/back-end/test_coverage)
 
-[![test coverage](https://api.codeclimate.com/v1/badges/93908cf627716c62afe6/test_coverage)](https://codeclimate.com/github/JimmyMcBride/knexts/test_coverage)
+## Tech Stack
+
+- Knex
+- GraphQL
+- TypeScript
