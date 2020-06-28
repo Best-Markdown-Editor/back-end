@@ -61,6 +61,8 @@ const server = new ApolloServer({
     req,
     res,
   }),
+  introspection: true,
+  playground: true,
 });
 
 app.use(
