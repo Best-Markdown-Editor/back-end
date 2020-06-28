@@ -24,6 +24,7 @@ interface Options {
   secret: string;
   resave: boolean;
   saveUninitialized: boolean;
+  cookie: any;
 }
 
 const sessionOptions: Options = {
@@ -34,6 +35,12 @@ const sessionOptions: Options = {
   secret: String(process.env.SECRET),
   resave: false,
   saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 1000 * 60 * 60 * 24 * 7 * 365, // 7 years
+    sameSite: true,
+  },
 };
 
 const welcomeMessage = `
@@ -65,7 +72,7 @@ app.use(
 
 app.use(session(sessionOptions));
 
-server.applyMiddleware({ app });
+server.applyMiddleware({ app, cors: false });
 
 const port = process.env.PORT;
 

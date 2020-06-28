@@ -3,6 +3,8 @@ const queryTypes = `
     hello(name: String): String!
     users: [User!]!
     getFiles: [File!]!
+    getFile(slug: String!): File!
+    isAuth: Boolean!
   }
 `;
 

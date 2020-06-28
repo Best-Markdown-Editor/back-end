@@ -8,16 +8,17 @@ export const setSession = (ctx: ExpressContext, user: User): void => {
   }
 };
 
-export const validateEmail = async (data: User): Promise<boolean> => {
+export const validateEmail = async (email: string): Promise<boolean> => {
   const re = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
-  console.log("Email data:", data.email);
-  return re.test(String(data.email).toLowerCase());
+  // console.log("Email:", email);
+  return re.test(String(email).toLowerCase());
 };
 
 export const slugify = (title: string) => {
   return title
     .toLowerCase()
     .replace(/-/g, " ")
+    .replace(/_/g, " ")
     .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
     .replace(/ /g, "-");
 };

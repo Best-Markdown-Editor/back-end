@@ -50,8 +50,6 @@ interface EditFileData {
 export const editFile = async (_: void, { data }: EditFileData) => {
   const file = await db("files").where({ id: data.id }).first();
 
-  console.log("file:", file);
-
   if (!file) throw new Error("That files does not exist. 💀");
 
   const fileData = {
@@ -65,6 +63,8 @@ export const editFile = async (_: void, { data }: EditFileData) => {
     .update(fileData)
     .where({ id: data.id })
     .returning("*");
+
+  console.log("file:", updatedFile);
 
   return updatedFile[0];
 };

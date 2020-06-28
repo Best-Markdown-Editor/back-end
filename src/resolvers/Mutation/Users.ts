@@ -3,7 +3,6 @@ import { ExpressContext } from "./../../types/index";
 import bcrypt from "bcryptjs";
 import db from "../../data/dbConfig";
 import { ValidationError } from "apollo-server-express";
-import { User } from "../../types";
 
 interface LoginData {
   data: {
@@ -13,7 +12,12 @@ interface LoginData {
 }
 
 interface RegisterData {
-  data: User;
+  data: {
+    email: string;
+    username: string;
+    password1: string;
+    password2: string;
+  };
 }
 
 export const login = async (
@@ -39,30 +43,34 @@ export const register = async (
   { data }: RegisterData,
   ctx: ExpressContext
 ) => {
-  const validate = await validateEmail(data);
+  const checkUser = await db("users").where({ email: data.email }).first();
+  if (checkUser)
+    throw new ValidationError("A user with that email already exits... 🐒");
+  const validate = await validateEmail(data.email);
 
   if (!validate) throw new ValidationError("That is not an valid email. 💀");
 
-  if (data.password.length < 6)
+  if (data.password1 !== data.password2)
+    throw new ValidationError("Passwords must match. 👯");
+
+  if (data.password2.length < 6)
     throw new ValidationError("Password must be 6 or more characters long. 💀");
 
-  try {
-    const user = await db("users").insert(data).returning("*");
+  const hashedPassword = await bcrypt.hash(data.password1, 12);
 
-    if (!user) throw new Error("Something went wrong... 💩");
+  const user = await db("users")
+    .insert({
+      username: data.username,
+      email: data.email,
+      password: hashedPassword,
+    })
+    .returning("*");
 
-    setSession(ctx, user);
+  if (!user[0]) throw new Error("Something went wrong... 💩");
 
-    return user[0];
-  } catch (err) {
-    const user = await db("users").insert(data).returning("*");
+  setSession(ctx, user[0]);
 
-    if (!user) throw new Error("Something went wrong... 💩");
-
-    setSession(ctx, user);
-
-    return user[0];
-  }
+  return user[0];
 };
 
 export const logout = (_: void, __: void, ctx: ExpressContext) => {
@@ -78,3 +86,33 @@ export const logout = (_: void, __: void, ctx: ExpressContext) => {
     })
   );
 };
+
+// try {
+//   const user = await db("users")
+//     .insert({
+//       username: data.username,
+//       email: data.email,
+//       password: data.password2,
+//     })
+//     .returning("*");
+
+//   if (!user) throw new Error("Something went wrong... 💩");
+
+//   setSession(ctx, user);
+
+//   return user[0];
+// } catch (err) {
+//   const user = await db("users")
+//     .insert({
+//       username: data.username,
+//       email: data.email,
+//       password: data.password2,
+//     })
+//     .returning("*");
+
+//   if (!user) throw new Error("Something went wrong... 💩");
+
+//   setSession(ctx, user);
+
+//   return user[0];
+// }

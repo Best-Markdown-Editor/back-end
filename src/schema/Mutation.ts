@@ -14,7 +14,8 @@ const mutationTypes = `
   input RegisterInput {
     email: String!
     username: String!
-    password: String!
+    password1: String!
+    password2: String!
   }
   input EditFileInput {
     id: ID!
