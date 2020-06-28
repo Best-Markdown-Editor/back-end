@@ -75,7 +75,13 @@ app.use(
 
 app.use(session(sessionOptions));
 
-server.applyMiddleware({ app, cors: false });
+server.applyMiddleware({
+  app,
+  cors: {
+    credentials: true,
+    origin: process.env.CORS_ORIGIN,
+  },
+});
 
 const port = process.env.PORT;
 
