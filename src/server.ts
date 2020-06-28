@@ -24,7 +24,7 @@ interface Options {
   secret: string;
   resave: boolean;
   saveUninitialized: boolean;
-  cookie: any;
+  // cookie: any;
 }
 
 const sessionOptions: Options = {
@@ -35,12 +35,12 @@ const sessionOptions: Options = {
   secret: String(process.env.SECRET),
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    maxAge: 1000 * 60 * 60 * 24 * 7 * 365, // 7 years
-    sameSite: true,
-  },
+  // cookie: {
+  //   httpOnly: true,
+  //   secure: process.env.NODE_ENV === "production",
+  //   maxAge: 1000 * 60 * 60 * 24 * 7 * 365, // 7 years
+  //   sameSite: true,
+  // },
 };
 
 const welcomeMessage = `
