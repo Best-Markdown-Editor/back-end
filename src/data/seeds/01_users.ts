@@ -11,6 +11,8 @@ export async function seed(knex: Knex): Promise<any> {
           id: "KLSDf23lkh756sdf34LK6S87DH2fo7IWSef",
           username: "TestUser",
           email: "testUser@gmail.com",
+          avatar:
+            "http://chrisalensula.org/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
         },
       ]);
     });
