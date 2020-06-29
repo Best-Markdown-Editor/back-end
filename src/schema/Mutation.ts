@@ -1,26 +1,25 @@
 const mutationTypes = `
   type Mutation {
-    login(data: LoginInput!): User!
-    register(data: RegisterInput!): User!
-    logout: Boolean!
-    addFile(title: String!): File!
+    login(data: UserInput!): User!
+    editUser(data: UserInput!): User!
+    addFile(data: NewFileInput!): File!
     editFile(data: EditFileInput!): File!
-    deleteFile(title: String!): Boolean!
+    deleteFile(id: ID!): Boolean!
   }
-  input LoginInput {
-    email: String!
-    password: String!
-  }
-  input RegisterInput {
-    email: String!
+  input UserInput {
+    id: ID!
     username: String!
-    password1: String!
-    password2: String!
+    email: String!
+    avatar: String
   }
   input EditFileInput {
     id: ID!
     title: String!
     body: String!
+  }
+  input NewFileInput {
+    title: String!
+    userId: String!
   }
 `;
 

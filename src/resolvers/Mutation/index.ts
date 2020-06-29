@@ -1,10 +1,9 @@
 import { addFile, editFile, deleteFile } from "./Files";
-import { login, register, logout } from "./Users";
+import { login, editUser } from "./Users";
 
 const Mutation = {
   login,
-  register,
-  logout,
+  editUser,
   addFile,
   editFile,
   deleteFile,
