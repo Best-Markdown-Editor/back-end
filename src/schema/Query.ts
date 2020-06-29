@@ -2,9 +2,14 @@ const queryTypes = `
   type Query {
     hello(name: String): String!
     users: [User!]!
-    getFiles: [File!]!
-    getFile(slug: String!): File!
-    isAuth: Boolean!
+    user(id: ID!): User!
+    getFiles(userId: String!): [File!]!
+    getFile(id: ID!): File!
+    getFileBySlug(data: GetBySlugInput!): File!
+  }
+  input GetBySlugInput {
+    slug: String!
+    userId: String!
   }
 `;
 

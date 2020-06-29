@@ -3,6 +3,7 @@ const tableTypes = `
     id: ID!
     username: String!
     email: String!
+    avatar: String!
   }
   type File {
     id: ID!

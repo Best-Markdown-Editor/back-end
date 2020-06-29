@@ -7,7 +7,7 @@ export async function up(knex: Knex): Promise<any> {
     tbl.text("title").notNullable();
     tbl.text("slug").notNullable();
     tbl.text("body").defaultTo("").notNullable();
-    tbl.integer("userId").notNullable();
+    tbl.string("userId").notNullable();
     tbl.text("date").defaultTo(moment().unix()).notNullable();
     tbl.text("updatedAt").defaultTo(moment().unix()).notNullable();
   });

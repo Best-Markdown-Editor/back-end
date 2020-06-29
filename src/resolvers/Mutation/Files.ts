@@ -1,31 +1,32 @@
 import { slugify } from "./../../helpers/index";
-import { ExpressContext } from "../../types";
 import db from "../../data/dbConfig";
 import { ValidationError } from "apollo-server-express";
 import moment from "moment";
 
-interface FileTile {
-  title: string;
+interface FileId {
+  id: string;
 }
-export const addFile = async (
-  _: void,
-  { title }: FileTile,
-  ctx: ExpressContext
-) => {
+interface AddFileArgs {
+  data: {
+    title: string;
+    userId: string;
+  };
+}
+export const addFile = async (_: void, { data }: AddFileArgs) => {
+  console.log("Args logger:", data);
+
   const fileData = {
-    title,
-    slug: slugify(title),
-    userId: ctx.req?.session!.userId,
+    title: data.title,
+    slug: slugify(data.title),
+    userId: data.userId,
   };
 
   const myFiles = await db("files")
     .where({
-      userId: ctx.req?.session!.userId,
-      title,
+      userId: data.userId,
+      title: data.title,
     })
     .first();
-
-  console.log("My files:", myFiles);
 
   if (myFiles)
     throw new ValidationError(
@@ -69,17 +70,8 @@ export const editFile = async (_: void, { data }: EditFileData) => {
   return updatedFile[0];
 };
 
-export const deleteFile = async (
-  _: void,
-  { title }: FileTile,
-  ctx: ExpressContext
-) => {
-  const destroy = await db("files")
-    .where({
-      title,
-      userId: ctx.req?.session!.userId,
-    })
-    .del();
+export const deleteFile = async (_: void, { id }: FileId) => {
+  const destroy = await db("files").where({ id }).del();
 
   if (!destroy) return false;
 
