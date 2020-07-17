@@ -7,6 +7,8 @@ import resolvers from "./resolvers";
 
 import cors from "cors";
 
+// Build out folders and published files feature.
+
 require("dotenv").config();
 
 const app = Express();
