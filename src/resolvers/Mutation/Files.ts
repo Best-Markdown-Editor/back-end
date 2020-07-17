@@ -10,6 +10,7 @@ interface AddFileArgs {
   data: {
     title: string;
     userId: string;
+    body: string;
   };
 }
 export const addFile = async (_: void, { data }: AddFileArgs) => {
@@ -19,6 +20,7 @@ export const addFile = async (_: void, { data }: AddFileArgs) => {
     title: data.title,
     slug: slugify(data.title),
     userId: data.userId,
+    body: data.body,
   };
 
   const myFiles = await db("files")

@@ -20,6 +20,7 @@ const mutationTypes = `
   input NewFileInput {
     title: String!
     userId: String!
+    body: String!
   }
 `;
 
