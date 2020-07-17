@@ -4,6 +4,7 @@ const tableTypes = `
     username: String!
     email: String!
     avatar: String!
+    subscriber: Boolean!
   }
   type File {
     id: ID!

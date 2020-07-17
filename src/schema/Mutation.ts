@@ -11,6 +11,7 @@ const mutationTypes = `
     username: String!
     email: String!
     avatar: String
+    subscriber: Boolean
   }
   input EditFileInput {
     id: ID!
