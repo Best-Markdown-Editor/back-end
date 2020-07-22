@@ -58,7 +58,7 @@ server.applyMiddleware({
 cmsAPI.applyMiddleware({
   app,
   cors: false,
-  path: "/api",
+  path: "/cms",
 });
 
 const port = process.env.PORT;
