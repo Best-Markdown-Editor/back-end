@@ -5,6 +5,9 @@ const mutationTypes = `
     addFile(data: NewFileInput!): File!
     editFile(data: EditFileInput!): File!
     deleteFile(id: ID!): Boolean!
+    publishFile(data: PubFileInput!): Pub!
+    subUser(id: ID!): User!
+    unSubUser(id: ID!): User!
   }
   input UserInput {
     id: ID!
@@ -22,6 +25,12 @@ const mutationTypes = `
     title: String!
     userId: String!
     body: String!
+  }
+  input PubFileInput {
+    id: ID!
+    userId: String!
+    description: String!
+    thumbnail: String
   }
 `;
 

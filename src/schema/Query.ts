@@ -6,6 +6,9 @@ const queryTypes = `
     getFiles(userId: String!): [File!]!
     getFile(id: ID!): File!
     getFileBySlug(data: GetBySlugInput!): File!
+    isSubscribed(id: ID!): Boolean!
+    getFolder(id: ID!): Folder!
+    getFolders(userId: ID!): [Folder]!
   }
   input GetBySlugInput {
     slug: String!
