@@ -1,6 +1,7 @@
 import { User } from "./../../types/index";
 import db from "../../data/dbConfig";
 import { ValidationError } from "apollo-server-express";
+import { v4 } from "uuid";
 
 interface UserProps {
   data: User;
@@ -30,5 +31,39 @@ export const editUser = async (_: void, { data }: UserProps) => {
   if (user.length === 0)
     throw new ValidationError("Something went wrong... 💩");
 
+  return user[0];
+};
+
+interface MyId {
+  id: string;
+}
+
+export const subUser = async (_: void, { id }: MyId) => {
+  const isSubscribed = await db("users").where({ id }).first();
+  if (isSubscribed.subscriber) return isSubscribed;
+  if (isSubscribed.token === null)
+    await db("users").where({ id }).update({
+      token: v4(),
+    });
+  const user = await db("users")
+    .update({
+      subscriber: true,
+    })
+    .where({ id })
+    .returning("*");
+  if (!user) throw new Error("No user with that ID exists 💀");
+  return user[0];
+};
+
+export const unSubUser = async (_: void, { id }: MyId) => {
+  const isSubscribed = await db("users").where({ id }).first();
+  if (!isSubscribed.subscriber) return isSubscribed;
+  const user = await db("users")
+    .update({
+      subscriber: false,
+    })
+    .where({ id })
+    .returning("*");
+  if (!user) throw new Error("No user with that ID exists 💀");
   return user[0];
 };

@@ -7,6 +7,7 @@ export async function up(knex: Knex): Promise<any> {
     tbl.text("email").notNullable().unique();
     tbl.text("avatar").notNullable();
     tbl.boolean("subscriber").defaultTo(false).notNullable();
+    tbl.text("token");
   });
 }
 

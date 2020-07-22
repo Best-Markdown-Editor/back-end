@@ -4,6 +4,8 @@ import { ApolloServer } from "apollo-server-express";
 
 import typeDefs from "./schema";
 import resolvers from "./resolvers";
+import cmsTypeDefs from "./cms/schema";
+import cmsResolvers from "./cms/resolvers";
 
 import cors from "cors";
 
@@ -31,6 +33,13 @@ const server = new ApolloServer({
   playground: true,
 });
 
+const cmsAPI = new ApolloServer({
+  typeDefs: cmsTypeDefs,
+  resolvers: cmsResolvers,
+  introspection: true,
+  playground: true,
+});
+
 app.use(
   cors({
     credentials: true,
@@ -44,6 +53,12 @@ server.applyMiddleware({
     credentials: true,
     origin: process.env.CORS_ORIGIN,
   },
+});
+
+cmsAPI.applyMiddleware({
+  app,
+  cors: false,
+  path: "/api",
 });
 
 const port = process.env.PORT;

@@ -79,3 +79,48 @@ export const deleteFile = async (_: void, { id }: FileId) => {
 
   return true;
 };
+
+interface PubFileArgs {
+  data: {
+    id: number;
+    userId: string;
+    description: string;
+    thumbnail?: string;
+  };
+}
+
+export const publishFile = async (_: void, { data }: PubFileArgs) => {
+  console.log("Args logger:", data);
+  const { id, userId, description, thumbnail } = data;
+  const file = await db("files").where({ id }).first();
+  const { title, slug, body } = file;
+  const isPub = await db("pub").where({ id }).first();
+  if (isPub) {
+    const pub = await db("pub")
+      .update({
+        description,
+        thumbnail,
+        title,
+        slug,
+        body,
+        updatedAt: moment().unix(),
+      })
+      .where({ id })
+      .returning("*");
+    return pub[0];
+  }
+  const pub = await db("pub")
+    .insert({
+      id,
+      description,
+      thumbnail,
+      title,
+      slug,
+      body,
+      publishedOn: moment().unix(),
+      updatedAt: moment().unix(),
+      userId,
+    })
+    .returning("*");
+  return pub[0];
+};
