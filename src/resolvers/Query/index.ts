@@ -78,6 +78,30 @@ const getFolders = async (_: void, { userId }: UserId) => {
   return folders;
 };
 
+const getPubFiles = async (_: void, { userId }: UserId) => {
+  const pubs = await db("pub").where({ userId });
+
+  if (pubs.length === 0) throw new Error("This user has no published files 💀");
+
+  return pubs;
+};
+
+const getPubFile = async (_: void, { id }: MyId) => {
+  const pub = await db("pub").where({ id }).first();
+
+  if (!pub) throw new Error("This file has not been published yet 💀");
+
+  return pub;
+};
+
+const isFilePub = async (_: void, { id }: MyId) => {
+  const pub = await db("pub").where({ id }).first();
+
+  if (!pub) return false;
+
+  return true;
+};
+
 const Query = {
   hello,
   users,
@@ -88,6 +112,9 @@ const Query = {
   isSubscribed,
   getFolder,
   getFolders,
+  getPubFiles,
+  getPubFile,
+  isFilePub,
 };
 
 export default Query;

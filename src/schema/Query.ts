@@ -9,6 +9,9 @@ const queryTypes = `
     isSubscribed(id: ID!): Boolean!
     getFolder(id: ID!): Folder!
     getFolders(userId: ID!): [Folder]!
+    getPubFiles(userId: ID!): [Pub]!
+    getPubFile(id: ID!): Pub!
+    isFilePub(id: ID!): Boolean!
   }
   input GetBySlugInput {
     slug: String!
