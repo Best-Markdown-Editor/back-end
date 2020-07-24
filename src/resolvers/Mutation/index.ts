@@ -1,4 +1,10 @@
-import { addFile, editFile, deleteFile, publishFile } from "./Files";
+import {
+  addFile,
+  editFile,
+  deleteFile,
+  publishFile,
+  unPublishFile,
+} from "./Files";
 import { login, editUser, subUser, unSubUser } from "./Users";
 // import { getFolders } from "./Folders";
 
@@ -11,7 +17,7 @@ const Mutation = {
   publishFile,
   subUser,
   unSubUser,
-  // getFolders,
+  unPublishFile,
 };
 
 export default Mutation;

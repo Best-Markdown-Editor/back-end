@@ -124,3 +124,11 @@ export const publishFile = async (_: void, { data }: PubFileArgs) => {
     .returning("*");
   return pub[0];
 };
+
+export const unPublishFile = async (_: void, { id }: FileId) => {
+  const destroy = await db("pub").where({ id }).del();
+
+  if (!destroy) return false;
+
+  return true;
+};

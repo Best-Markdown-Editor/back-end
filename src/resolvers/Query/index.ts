@@ -81,7 +81,7 @@ const getFolders = async (_: void, { userId }: UserId) => {
 const getPubFiles = async (_: void, { userId }: UserId) => {
   const pubs = await db("pub").where({ userId });
 
-  if (pubs.length === 0) throw new Error("This user has no published files 💀");
+  // if (pubs.length === 0) throw new Error("This user has no published files 💀");
 
   return pubs;
 };

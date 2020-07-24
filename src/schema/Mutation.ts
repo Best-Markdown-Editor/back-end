@@ -6,6 +6,7 @@ const mutationTypes = `
     editFile(data: EditFileInput!): File!
     deleteFile(id: ID!): Boolean!
     publishFile(data: PubFileInput!): Pub!
+    unPublishFile(id: ID!): Boolean!
     subUser(id: ID!): User!
     unSubUser(id: ID!): User!
   }
