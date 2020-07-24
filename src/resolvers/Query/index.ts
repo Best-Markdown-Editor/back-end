@@ -56,6 +56,13 @@ const getFileBySlug = async (_: void, { data }: GetFileBySlugArgs) => {
   return file;
 };
 
+const getPubFileBySlug = async (_: void, { data }: GetFileBySlugArgs) => {
+  const file = await db("pub")
+    .where({ slug: data.slug, userId: data.userId })
+    .first();
+  return file;
+};
+
 const isSubscribed = async (_: void, { id }: MyId) => {
   const user = await db("users").where({ id }).first();
 
@@ -81,7 +88,7 @@ const getFolders = async (_: void, { userId }: UserId) => {
 const getPubFiles = async (_: void, { userId }: UserId) => {
   const pubs = await db("pub").where({ userId });
 
-  if (pubs.length === 0) throw new Error("This user has no published files 💀");
+  // if (pubs.length === 0) throw new Error("This user has no published files 💀");
 
   return pubs;
 };
@@ -115,6 +122,7 @@ const Query = {
   getPubFiles,
   getPubFile,
   isFilePub,
+  getPubFileBySlug,
 };
 
 export default Query;
