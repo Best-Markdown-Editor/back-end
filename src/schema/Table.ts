@@ -28,7 +28,7 @@ const tableTypes = `
   type Folder {
     id: ID!
     name: String!
-    files: [File]!
+    files: [Pub]!
   }
 `;
 
