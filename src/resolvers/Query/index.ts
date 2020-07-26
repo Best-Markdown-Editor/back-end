@@ -109,6 +109,47 @@ const isFilePub = async (_: void, { id }: MyId) => {
   return true;
 };
 
+interface GetFilesInFolderArgs {
+  data: {
+    name: string;
+    userId: string;
+  };
+}
+
+const getFilesInFolderByName = async (
+  _: void,
+  { data }: GetFilesInFolderArgs
+) => {
+  const { name, userId } = data;
+  const { id: folderId } = await db("folder").where({ name, userId }).first();
+  console.log("folder id:", folderId);
+  const pub = await db("pubToFolder")
+    .where({ folderId })
+    .join("pub", "pubToFolder.pubId", "pub.id");
+
+  if (!pub) throw new Error("Something went wrong 💀");
+
+  return pub;
+};
+
+const getUserFolders = async (_: void, { userId }: UserId) => {
+  const folders = await db("folder").where({ userId });
+
+  // if (!pub) throw new Error("Something went wrong 💀");
+
+  return folders;
+};
+
+const getFilesInFolderById = async (_: void, { id }: MyId) => {
+  const pub = await db("pubToFolder")
+    .where({ folderId: id })
+    .join("pub", "pubToFolder.pubId", "pub.id");
+
+  if (!pub) throw new Error("Something went wrong 💀");
+
+  return pub;
+};
+
 const Query = {
   hello,
   users,
@@ -123,6 +164,9 @@ const Query = {
   getPubFile,
   isFilePub,
   getPubFileBySlug,
+  getFilesInFolderByName,
+  getFilesInFolderById,
+  getUserFolders,
 };
 
 export default Query;

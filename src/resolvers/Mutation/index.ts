@@ -6,7 +6,7 @@ import {
   unPublishFile,
 } from "./Files";
 import { login, editUser, subUser, unSubUser } from "./Users";
-// import { getFolders } from "./Folders";
+import { addFolder, editFolder, deleteFolder, addPubToFolder } from "./Folders";
 
 const Mutation = {
   login,
@@ -18,6 +18,10 @@ const Mutation = {
   subUser,
   unSubUser,
   unPublishFile,
+  addFolder,
+  editFolder,
+  deleteFolder,
+  addPubToFolder,
 };
 
 export default Mutation;
