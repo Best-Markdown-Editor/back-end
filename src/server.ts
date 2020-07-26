@@ -4,10 +4,11 @@ import { ApolloServer } from "apollo-server-express";
 
 import typeDefs from "./schema";
 import resolvers from "./resolvers";
-import cmsTypeDefs from "./cms/schema";
-import cmsResolvers from "./cms/resolvers";
+import cmsTypeDefs from "./cms/gql/schema";
+import cmsResolvers from "./cms/gql/resolvers";
 
 import cors from "cors";
+import { ExpressContext } from "apollo-server-express/dist/ApolloServer";
 
 // Build out folders and published files feature.
 
@@ -18,7 +19,7 @@ const app = Express();
 const welcomeMessage = `
 <body style="display: flex; flex-direction: column; align-items: center;">
   <h1>Server is up and running!</h1>
-  <p>The GraphQL API is located at <a href="/graphql">/graphql</a></p>
+  <p>Best Markdown Content Management System GraphQL API is located at <a href="/cms">/cms</a></p>
 </body>
 `;
 
@@ -26,11 +27,11 @@ app.get("/", async (_, res) => {
   res.send(welcomeMessage);
 });
 
+// app.use("/api", cors(), cmsRestRouter);
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  introspection: true,
-  playground: true,
 });
 
 const cmsAPI = new ApolloServer({
@@ -38,6 +39,10 @@ const cmsAPI = new ApolloServer({
   resolvers: cmsResolvers,
   introspection: true,
   playground: true,
+  context: ({ req, res }: ExpressContext): ExpressContext => ({
+    req,
+    res,
+  }),
 });
 
 app.use(

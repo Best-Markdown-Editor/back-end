@@ -2,9 +2,9 @@ import * as Knex from "knex";
 
 export async function up(knex: Knex): Promise<any> {
   return knex.schema.createTable("pubToFolder", (tbl) => {
-    tbl.integer("id").primary();
-    tbl.text("folderId").notNullable();
-    tbl.text("pubId").notNullable();
+    tbl.increments();
+    tbl.integer("folderId").notNullable();
+    tbl.integer("pubId").notNullable();
   });
 }
 

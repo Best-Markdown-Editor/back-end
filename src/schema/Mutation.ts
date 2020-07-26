@@ -9,6 +9,10 @@ const mutationTypes = `
     unPublishFile(id: ID!): Boolean!
     subUser(id: ID!): User!
     unSubUser(id: ID!): User!
+    addFolder(data: AddFolderInput!): Folder!
+    editFolder(data: EditFolderInput!): Folder!
+    deleteFolder(id: ID!): Boolean!
+    addPubToFolder(data: PubToFolderInput!): Boolean!
   }
   input UserInput {
     id: ID!
@@ -32,6 +36,18 @@ const mutationTypes = `
     userId: String!
     description: String!
     thumbnail: String
+  }
+  input AddFolderInput {
+    userId: String!
+    name: String!
+  }
+  input EditFolderInput {
+    id: ID!
+    name: String!
+  }
+  input PubToFolderInput {
+    pubId: Int!
+    folderId: Int!
   }
 `;
 
