@@ -70,9 +70,24 @@ export const deleteFolder = async (_: void, { id }: DeleteFolderArg) => {
 export const addPubToFolder = async (_: void, { data }: PubToFolderInput) => {
   console.log("data", data);
   const { pubId, folderId } = data;
+
+  const checkIfExists = await db("pubToFolder").where({ pubId, folderId });
+  if (checkIfExists.length >= 1)
+    throw new Error("That file is already published to that folder 💀");
+
   const res = await db("pubToFolder").insert({ pubId, folderId });
 
   if (!res) throw new Error("Did not publish");
+
+  return true;
+};
+
+export const unPubToFolder = async (_: void, { data }: PubToFolderInput) => {
+  console.log("data", data);
+  const { pubId, folderId } = data;
+  const res = await db("pubToFolder").where({ pubId, folderId }).del();
+
+  if (!res) throw new Error("Did not un-publish");
 
   return true;
 };

@@ -13,6 +13,8 @@ const mutationTypes = `
     editFolder(data: EditFolderInput!): Folder!
     deleteFolder(id: ID!): Boolean!
     addPubToFolder(data: PubToFolderInput!): Boolean!
+    unPubToFolder(data: PubToFolderInput!): Boolean!
+    regenToken(id: ID!): User!
   }
   input UserInput {
     id: ID!

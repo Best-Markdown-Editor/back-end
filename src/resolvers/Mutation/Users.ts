@@ -67,3 +67,13 @@ export const unSubUser = async (_: void, { id }: MyId) => {
   if (!user) throw new Error("No user with that ID exists 💀");
   return user[0];
 };
+
+export const regenToken = async (_: void, { id }: MyId) => {
+  const user = await db("users")
+    .where({ id })
+    .update({
+      token: v4(),
+    })
+    .returning("*");
+  return user[0];
+};

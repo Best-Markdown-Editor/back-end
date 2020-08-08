@@ -5,8 +5,14 @@ import {
   publishFile,
   unPublishFile,
 } from "./Files";
-import { login, editUser, subUser, unSubUser } from "./Users";
-import { addFolder, editFolder, deleteFolder, addPubToFolder } from "./Folders";
+import { login, editUser, subUser, unSubUser, regenToken } from "./Users";
+import {
+  addFolder,
+  editFolder,
+  deleteFolder,
+  addPubToFolder,
+  unPubToFolder,
+} from "./Folders";
 
 const Mutation = {
   login,
@@ -22,6 +28,8 @@ const Mutation = {
   editFolder,
   deleteFolder,
   addPubToFolder,
+  unPubToFolder,
+  regenToken,
 };
 
 export default Mutation;

@@ -76,8 +76,6 @@ const resolvers = {
       const userId = await auth(ctx.req.headers.token);
       const folders = await db("folder").where({ userId });
 
-      // if (!pub) throw new Error("Something went wrong 💀");
-
       return folders;
     },
   },
