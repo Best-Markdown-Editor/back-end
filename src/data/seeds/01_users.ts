@@ -8,11 +8,12 @@ export async function seed(knex: Knex): Promise<any> {
       // Inserts seed entries 🌱
       return knex("users").insert([
         {
-          id: "KLSDf23lkh756sdf34LK6S87DH2fo7IWSef",
+          id: "OpXrOo1X72fQkg6bkFSj5i2dokl1",
           username: "TestUser",
           email: "testUser@gmail.com",
           avatar:
             "http://chrisalensula.org/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
+          subscriber: true,
         },
       ]);
     });

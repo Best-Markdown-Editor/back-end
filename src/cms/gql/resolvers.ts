@@ -1,4 +1,4 @@
-import { auth } from "../../helpers/index";
+import { auth } from "../../helpers";
 import db from "../../data/dbConfig";
 import { ExpressContext } from "apollo-server-express/dist/ApolloServer";
 
