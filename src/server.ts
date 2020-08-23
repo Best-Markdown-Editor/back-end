@@ -46,9 +46,7 @@ const cmsAPI = new ApolloServer({
   }),
 });
 
-// app.use(
-//   cors()
-// );
+// app.use(cors());
 
 server.applyMiddleware({
   app,
