@@ -6,6 +6,7 @@ import typeDefs from "./schema";
 import resolvers from "./resolvers";
 import cmsTypeDefs from "./cms/gql/schema";
 import cmsResolvers from "./cms/gql/resolvers";
+import restRouter from "./cms/rest";
 
 import cors from "cors";
 import { ExpressContext } from "apollo-server-express/dist/ApolloServer";
@@ -27,7 +28,7 @@ app.get("/", async (_, res) => {
   res.send(welcomeMessage);
 });
 
-// app.use("/api", cors(), cmsRestRouter);
+app.use("/api", cors(), restRouter);
 
 const server = new ApolloServer({
   typeDefs,
