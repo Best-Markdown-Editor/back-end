@@ -46,7 +46,7 @@ const cmsAPI = new ApolloServer({
   }),
 });
 
-// app.use(cors());
+app.use(cors());
 
 server.applyMiddleware({
   app,
@@ -58,7 +58,9 @@ server.applyMiddleware({
 
 cmsAPI.applyMiddleware({
   app,
-  cors: false,
+  cors: {
+    credentials: false,
+  },
   path: "/cms",
 });
 
