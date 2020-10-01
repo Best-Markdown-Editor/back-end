@@ -11,14 +11,6 @@
       "pre-commit": "yarn lint:fix"
     }
   },
-  "lint-staged": {
-    "*.{js,ts}": [
-      "eslint --cache --fix ."
-    ],
-    "*.{json,md,html}": [
-      "prettier --write"
-    ]
-  },
   "scripts": {
     "dev": "nodemon src/server.ts",
     "start": "ts-node src/server.ts",
@@ -28,7 +20,7 @@
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --forceExit",
     "coverage": "cross-env NODE_ENV=testing jest --coverage --detectOpenHandles --forceExit || true",
     "lint": "eslint .",
-    "lint:fix": "yarn format && lint-staged",
+    "lint:fix": "yarn format && eslint --cache --fix .;",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md)\""
   },
   "dependencies": {
