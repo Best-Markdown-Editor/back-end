@@ -16,7 +16,6 @@
       "prettier --write"
     ],
     "*.{js,ts,tsx}": [
-      "eslint --quiet --fix",
       "eslint ."
     ]
   },
