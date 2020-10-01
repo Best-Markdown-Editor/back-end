@@ -13,7 +13,7 @@
   },
   "lint-staged": {
     "*.{json,md,html}": [
-      "eslint ."
+      "yarn lint"
     ]
   },
   "scripts": {
