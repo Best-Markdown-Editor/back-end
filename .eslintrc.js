@@ -1,4 +1,9 @@
 module.exports = {
+  env: {
+    node: true,
+    commonjs: true,
+    es2020: true,
+  },
   parser: "@typescript-eslint/parser", // Specifies the ESLint parser
   extends: [
     "plugin:@typescript-eslint/recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin
@@ -13,10 +18,11 @@ module.exports = {
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "prettier/prettier": ["error"],
   },
   overrides: [
     {
-      files: ["**/*.test.ts"],
+      files: ["__tests__/*", "__tests__/**/*"],
       env: {
         jest: true,
       },

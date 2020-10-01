@@ -6,15 +6,15 @@
   "author": "JimmyMcBride <mcbride967@gmail.com>",
   "license": "MIT",
   "private": false,
+  "lint-staged": {
+    "*.ts": [
+      "yarn lint"
+    ]
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "lint-staged": {
-    "*.{json,md,html}": [
-      "yarn lint"
-    ]
   },
   "scripts": {
     "dev": "nodemon src/server.ts",
@@ -24,7 +24,7 @@
     "total-reset": "yarn db-remake && yarn knex-refresh",
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --forceExit",
     "coverage": "cross-env NODE_ENV=testing jest --coverage --detectOpenHandles --forceExit || true",
-    "lint": "eslint .",
+    "lint": "npx tsc --noEmit && eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md)\""
   },
