@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": false,
   "lint-staged": {
-    "**/*.{js,ts}": [
+    "**/*.ts": [
       "eslint ."
     ]
   },
