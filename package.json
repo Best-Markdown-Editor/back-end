@@ -8,10 +8,13 @@
   "private": false,
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint:fix"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
+    "*.{js,ts}": [
+      "yarn lint:fix"
+    ],
     "*.{json,md,html}": [
       "prettier --write"
     ]
@@ -25,7 +28,7 @@
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --forceExit",
     "coverage": "cross-env NODE_ENV=testing jest --coverage --detectOpenHandles --forceExit || true",
     "lint": "eslint .",
-    "lint:fix": "yarn format && eslint --fix .; lint-staged",
+    "lint:fix": "yarn format && eslint --cache --fix .",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md)\""
   },
   "dependencies": {
