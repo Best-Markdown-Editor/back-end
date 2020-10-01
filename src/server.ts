@@ -28,7 +28,7 @@ app.get("/", async (_, res) => {
   res.send(welcomeMessage);
 });
 
-app.use("/api", cors(), restRouter);
+app.use('/api', cors(), restRouter);
 
 const server = new ApolloServer({
   typeDefs,
