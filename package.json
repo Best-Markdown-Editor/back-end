@@ -8,16 +8,8 @@
   "private": false,
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn lint:fix"
     }
-  },
-  "lint-staged": {
-    "*.{js,ts}": [
-      "yarn lint:fix"
-    ],
-    "*.{json,md,html}": [
-      "prettier --write"
-    ]
   },
   "scripts": {
     "dev": "nodemon src/server.ts",
@@ -28,7 +20,7 @@
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --forceExit",
     "coverage": "cross-env NODE_ENV=testing jest --coverage --detectOpenHandles --forceExit || true",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint:fix": "yarn format && eslint --cache --fix .",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md)\""
   },
   "dependencies": {
@@ -64,6 +56,7 @@
     "@types/jest": "^26.0.3",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
+    "eslint-plugin-import": "^2.22.1",
     "husky": "^4.3.0",
     "jest": "^26.1.0",
     "lint-staged": "^10.4.0",
