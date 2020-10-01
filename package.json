@@ -8,8 +8,7 @@
   "private": false,
   "lint-staged": {
     "**/*.{js,ts}": [
-      "eslint --fix",
-      "prettier-eslint --write"
+      "eslint ."
     ]
   },
   "husky": {
@@ -26,7 +25,7 @@
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --forceExit",
     "coverage": "cross-env NODE_ENV=testing jest --coverage --detectOpenHandles --forceExit || true",
     "lint": "eslint .",
-    "lint:fix": "yarn format && eslint --cache --fix .",
+    "lint:fix": "eslint --fix .",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md)\""
   },
   "dependencies": {
