@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - master
+      - staging
 
 # The jobs that will be run, usually in parallel
 jobs:
