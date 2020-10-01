@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": false,
   "lint-staged": {
-    "**/*.ts": [
+    "*.ts": [
       "npx eslint ."
     ]
   },
