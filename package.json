@@ -12,11 +12,11 @@
     }
   },
   "lint-staged": {
-    "*.{json,md,html}": [
-      "prettier --write"
-    ],
     "*.{js,ts}": [
       "yarn lint:fix"
+    ],
+    "*.{json,md,html}": [
+      "prettier --write"
     ]
   },
   "scripts": {
