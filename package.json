@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": false,
   "lint-staged": {
-    "**/*.ts": [
+    "**/*.{js,ts}": [
       "eslint --fix",
       "prettier-eslint --write"
     ]
