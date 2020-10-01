@@ -18,7 +18,7 @@ require("dotenv").config();
 
 const app = Express();
 
-// const thing: any = "hey";
+const thing: any = "hey";
 const thing: any = "hey";
 
 const welcomeMessage = `
