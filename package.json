@@ -13,11 +13,7 @@
   },
   "lint-staged": {
     "*.{json,md,html}": [
-      "prettier --write"
-    ],
-    "*.{js,ts,tsx}": [
-      "./node_modules/.bin/eslint — fix",
-      "git add"
+      "eslint ."
     ]
   },
   "scripts": {
