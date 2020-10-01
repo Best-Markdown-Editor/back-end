@@ -13,7 +13,10 @@
   },
   "lint-staged": {
     "*.{json,md,html}": [
-      "yarn lint"
+      "prettier --write"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint — fix"
     ]
   },
   "scripts": {
