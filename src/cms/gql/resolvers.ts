@@ -1,3 +1,4 @@
+import { Folder } from "./../../types";
 import { auth } from "../../helpers";
 import db from "../../data/dbConfig";
 import { ExpressContext } from "apollo-server-express/dist/ApolloServer";
@@ -80,7 +81,7 @@ const resolvers = {
     },
   },
   Folder: {
-    async files(folder: any) {
+    async files(folder: Folder) {
       const files = await db("pubToFolder")
         .where({ folderId: folder.id })
         .join("pub", "pubToFolder.pubId", "pub.id");

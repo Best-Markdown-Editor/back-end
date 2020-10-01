@@ -4,6 +4,7 @@
 
 ## Tech Stack
 
-- Knex
-- GraphQL
 - TypeScript
+- Express
+- Knex
+- GraphQL (Apollo Server)

@@ -1,4 +1,5 @@
-import { auth } from "./../../helpers/index";
+import { Folder } from "./../../types";
+import { auth } from "./../../helpers";
 import Express, { Request, Response } from "express";
 import db from "../../data/dbConfig";
 
@@ -51,7 +52,7 @@ restRouter.get("/folders", async (req: Request, res: Response) => {
     const folders = await db("folder").select("id", "name").where({ userId });
 
     const foldersWithFiles = await Promise.all(
-      folders.map(async (folder: any) => {
+      folders.map(async (folder: Folder) => {
         const files = await db("pubToFolder")
           .where({ folderId: folder.id })
           .join("pub", "pubToFolder.pubId", "pub.id")

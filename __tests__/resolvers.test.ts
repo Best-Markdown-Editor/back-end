@@ -7,6 +7,7 @@ import resolvers from "../src/resolvers";
 
 import db from "../src/data/dbConfig";
 
+// eslint-disable-next-line
 let server: any;
 
 beforeAll(async () => {

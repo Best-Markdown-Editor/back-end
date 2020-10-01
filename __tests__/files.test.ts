@@ -7,6 +7,7 @@ import resolvers from "../src/resolvers";
 
 import db from "../src/data/dbConfig";
 
+// eslint-disable-next-line
 let server: any;
 
 beforeAll(async () => {
@@ -115,8 +116,6 @@ describe("File Resolvers 🗄", () => {
       },
     });
 
-    // console.log("Add New File Response:", res);
-
     res;
 
     expect(res).toMatchObject({
@@ -144,8 +143,6 @@ describe("File Resolvers 🗄", () => {
       },
     });
 
-    // console.log("Edit File Response:", res);
-
     expect(res).toMatchObject({
       data: {
         editFile: {
@@ -166,8 +163,6 @@ describe("File Resolvers 🗄", () => {
         title: "New Tile For-for Post Two!",
       },
     });
-
-    // console.log("Edit File Response:", res);
 
     expect(await res.data?.deleteFile).toBeTruthy();
   });
