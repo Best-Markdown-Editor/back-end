@@ -13,7 +13,10 @@
     "knex-refresh": "knex migrate:rollback && knex migrate:latest && knex seed:run",
     "total-reset": "yarn db-remake && yarn knex-refresh",
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --forceExit",
-    "coverage": "cross-env NODE_ENV=testing jest --coverage --detectOpenHandles --forceExit || true"
+    "coverage": "cross-env NODE_ENV=testing jest --coverage --detectOpenHandles --forceExit || true",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md)\""
   },
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
@@ -30,12 +33,16 @@
     "connect-redis": "^4.0.4",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "express-session": "^1.17.1",
     "graphql-tools": "^6.0.11",
     "ioredis": "^4.17.3",
     "knex": "^0.21.1",
     "moment": "^2.27.0",
     "pg": "^8.2.1",
+    "prettier": "^2.1.2",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5",
     "uuid": "^8.2.0"
