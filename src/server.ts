@@ -19,7 +19,6 @@ require("dotenv").config();
 const app = Express();
 
 const thing: any = "hey";
-const other: any = "hey";
 
 const welcomeMessage = `
 <body style="display: flex; flex-direction: column; align-items: center;">
