@@ -16,7 +16,7 @@
       "prettier --write"
     ],
     "*.{js,ts,tsx}": [
-      "eslint ."
+      "yarn lint"
     ]
   },
   "scripts": {
