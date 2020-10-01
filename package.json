@@ -16,7 +16,8 @@
       "prettier --write"
     ],
     "*.{js,ts,tsx}": [
-      "yarn lint"
+      "./node_modules/.bin/eslint — fix",
+      "git add"
     ]
   },
   "scripts": {
