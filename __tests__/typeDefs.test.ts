@@ -4,6 +4,7 @@ import { mockServer } from "graphql-tools";
 describe("check schemas type definitions", () => {
   test("has valid typeDefs", async () => {
     expect(async () => {
+      // eslint-disable-next-line
       // @ts-ignore
       const MockServer = mockServer(typeDefs);
       await MockServer.query(`{__schema{types{name}}}`);

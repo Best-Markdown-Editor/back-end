@@ -13,9 +13,12 @@ import { ExpressContext } from "apollo-server-express/dist/ApolloServer";
 
 // Build out folders and published files feature.
 
+// eslint-disable-next-line
 require("dotenv").config();
 
 const app = Express();
+
+let thing: any;
 
 const welcomeMessage = `
 <body style="display: flex; flex-direction: column; align-items: center;">
@@ -28,7 +31,7 @@ app.get("/", async (_, res) => {
   res.send(welcomeMessage);
 });
 
-app.use('/api', cors(), restRouter);
+app.use("/api", cors(), restRouter);
 
 const server = new ApolloServer({
   typeDefs,

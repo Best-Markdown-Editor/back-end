@@ -1,6 +1,7 @@
+import { Folder } from "./../../types";
 import db from "../../data/dbConfig";
 
-const files = async (folder: any) => {
+const files = async (folder: Folder) => {
   const files = await db("pubToFolder")
     .where({ folderId: folder.id })
     .join("pub", "pubToFolder.pubId", "pub.id")

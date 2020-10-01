@@ -1,7 +1,7 @@
 import * as Knex from "knex";
 import moment from "moment";
 
-export async function up(knex: Knex): Promise<any> {
+export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable("files", (tbl) => {
     tbl.increments();
     tbl.text("title").notNullable();
@@ -13,6 +13,6 @@ export async function up(knex: Knex): Promise<any> {
   });
 }
 
-export async function down(knex: Knex): Promise<any> {
+export async function down(knex: Knex): Promise<void> {
   return knex.schema.dropTableIfExists("files");
 }

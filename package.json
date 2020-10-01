@@ -6,6 +6,19 @@
   "author": "JimmyMcBride <mcbride967@gmail.com>",
   "license": "MIT",
   "private": false,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --quiet --fix"
+    ],
+    "*.{json,md,html}": [
+      "prettier --write"
+    ]
+  },
   "scripts": {
     "dev": "nodemon src/server.ts",
     "start": "ts-node src/server.ts",
@@ -49,7 +62,11 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "husky": "^4.3.0",
     "jest": "^26.1.0",
+    "lint-staged": "^10.4.0",
     "nodemon": "^2.0.4",
     "ts-jest": "^26.1.1"
   },
