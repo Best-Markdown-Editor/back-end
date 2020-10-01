@@ -6,18 +6,16 @@
   "author": "JimmyMcBride <mcbride967@gmail.com>",
   "license": "MIT",
   "private": false,
+  "lint-staged": {
+    "**/*.ts": [
+      "eslint --fix",
+      "prettier-eslint --write"
+    ]
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "lint-staged": {
-    "*.{js,ts}": [
-      "yarn lint:fix"
-    ],
-    "*.{json,md,html}": [
-      "prettier --write"
-    ]
   },
   "scripts": {
     "dev": "nodemon src/server.ts",
