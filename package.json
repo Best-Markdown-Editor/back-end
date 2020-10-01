@@ -8,7 +8,7 @@
   "private": false,
   "lint-staged": {
     "*.ts": [
-      "npx eslint ."
+      "yarn lint"
     ]
   },
   "husky": {
@@ -24,7 +24,7 @@
     "total-reset": "yarn db-remake && yarn knex-refresh",
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --forceExit",
     "coverage": "cross-env NODE_ENV=testing jest --coverage --detectOpenHandles --forceExit || true",
-    "lint": "eslint .",
+    "lint": "npx tsc --noEmit && eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md)\""
   },
