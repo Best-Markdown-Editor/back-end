@@ -83,7 +83,7 @@ describe("Users Resolvers 🕺", () => {
       data: {
         users: [
           {
-            id: "1",
+            id: "OpXrOo1X72fQkg6bkFSj5i2dokl1",
             username: "TestUser",
             email: "testUser@gmail.com",
           },

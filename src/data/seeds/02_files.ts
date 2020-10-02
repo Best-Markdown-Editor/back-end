@@ -10,17 +10,17 @@ export async function seed(knex: Knex): Promise<void> {
         {
           title: "This File",
           slug: "this-file",
-          userId: "KLSDf23lkh756sdf34LK6S87DH2fo7IWSef",
+          userId: "OpXrOo1X72fQkg6bkFSj5i2dokl1",
         },
         {
           title: "That File",
           slug: "that-file",
-          userId: "KLSDf23lkh756sdf34LK6S87DH2fo7IWSef",
+          userId: "OpXrOo1X72fQkg6bkFSj5i2dokl1",
         },
         {
           title: "Any File",
           slug: "any-file",
-          userId: "KLSDf23lkh756sdf34LK6S87DH2fo7IWSef",
+          userId: "OpXrOo1X72fQkg6bkFSj5i2dokl1",
         },
       ]);
     });

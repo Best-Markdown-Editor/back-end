@@ -33,8 +33,8 @@ afterAll(() => {
 });
 
 const getFilesQuery = `
-  query {
-    getFiles {
+  query ($userId: String!) {
+    getFiles(userId: $userId) {
       id
       title
       slug
@@ -44,8 +44,8 @@ const getFilesQuery = `
 `;
 
 const addNewFileMutation = `
-  mutation ($title: String!) {
-    addFile(title: $title) {
+  mutation ($data: NewFileInput!) {
+    addFile(data: $data) {
       id
       title
       slug
@@ -66,8 +66,8 @@ const editFileMutation = `
 `;
 
 const deleteFileMutation = `
-  mutation ($title: String!) {
-    deleteFile(title: $title)
+  mutation ($id: ID!) {
+    deleteFile(id: $id)
   }
 `;
 
@@ -77,6 +77,9 @@ describe("File Resolvers 🗄", () => {
 
     const res = await query({
       query: getFilesQuery,
+      variables: {
+        userId: "OpXrOo1X72fQkg6bkFSj5i2dokl1",
+      },
     });
 
     console.log("Get Files Response:", res);
@@ -85,9 +88,9 @@ describe("File Resolvers 🗄", () => {
       data: {
         getFiles: [
           {
-            id: "3",
-            title: "Any File",
-            slug: "any-file",
+            id: "1",
+            title: "This File",
+            slug: "this-file",
             body: "",
           },
           {
@@ -97,9 +100,9 @@ describe("File Resolvers 🗄", () => {
             body: "",
           },
           {
-            id: "1",
-            title: "This File",
-            slug: "this-file",
+            id: "3",
+            title: "Any File",
+            slug: "any-file",
             body: "",
           },
         ],
@@ -112,7 +115,11 @@ describe("File Resolvers 🗄", () => {
     const res = await mutate({
       mutation: addNewFileMutation,
       variables: {
-        title: "My new file!",
+        data: {
+          title: "My new file!",
+          userId: "OpXrOo1X72fQkg6bkFSj5i2dokl1",
+          body: "This is a body.",
+        },
       },
     });
 
@@ -124,7 +131,7 @@ describe("File Resolvers 🗄", () => {
           id: "4",
           title: "My new file!",
           slug: "my-new-file",
-          body: "",
+          body: "This is a body.",
         },
       },
     });
@@ -160,9 +167,11 @@ describe("File Resolvers 🗄", () => {
     const res = await mutate({
       mutation: deleteFileMutation,
       variables: {
-        title: "New Tile For-for Post Two!",
+        id: 4,
       },
     });
+
+    console.log(res);
 
     expect(await res.data?.deleteFile).toBeTruthy();
   });
