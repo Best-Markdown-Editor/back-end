@@ -1,4 +1,9 @@
 // eslint-disable-next-line
+const parse = require("pg-connection-string").parse;
+const pgconfig = parse(`${process.env.DATABASE_URL}?ssl=true`);
+pgconfig.ssl = { rejectUnauthorized: false };
+
+// eslint-disable-next-line
 require("dotenv").config();
 
 module.exports = {
@@ -39,7 +44,7 @@ module.exports = {
 
   production: {
     client: "pg",
-    connection: `${process.env.DATABASE_URL}?ssl=true`,
+    connection: pgconfig,
     pool: {
       min: 2,
       max: 10,
