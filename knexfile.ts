@@ -9,7 +9,7 @@ require("dotenv").config();
 module.exports = {
   development: {
     client: "pg",
-    connection: process.env.MY_DATABASE_URL,
+    connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
       max: 10,
@@ -27,7 +27,7 @@ module.exports = {
 
   testing: {
     client: "pg",
-    connection: process.env.HEROKU_POSTGRESQL_BROWN_URL,
+    connection: process.env.TEST_DATABASE_URL,
     migrations: {
       tablename: "knex_migrations",
       directory: "./src/data/migrations",
